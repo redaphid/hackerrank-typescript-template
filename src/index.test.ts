@@ -1,23 +1,5 @@
-import { qusing2stacks, CmdProcessor, Q } from ".";
+import {CmdProcessor } from ".";
 describe("qusing2stacks", () => {
-  test("Smoke test", () => {
-    const input = [
-      "10",
-      "1 42",
-      "2",
-      "1 14",
-      "3",
-      "1 28",
-      "3",
-      "1 60",
-      "1 78",
-      "2",
-      "2",
-    ];
-    const expected = ["14", "14"];
-    expect(qusing2stacks(input)).toEqual(expected);
-  });
-
   describe("CmdProcessor", () => {
     it("should exist", () => {
       expect(CmdProcessor).toBeDefined();
@@ -102,15 +84,6 @@ describe("qusing2stacks", () => {
         expect(print).toHaveBeenCalledWith("903");
         expect(print).not.toHaveBeenCalledWith("10");
       });
-    });
-  });
-  describe("Queue", () => {
-    let q;
-    beforeEach(() => {
-      q = new Q();
-    });
-    test("should exist", () => {
-      expect(q).toBeDefined();
     });
   });
 });

@@ -20,18 +20,15 @@ class CmdProcessor {
     this.dequeue = dequeue || ((): void => {
       this.q.shift();
     });
-    this.print = print || ((arg: string) => {
-      console.log(arg);
-    });
   }
   process(commands: string[]): string[] {
     const [length, ...cmds] = commands
     for(let c of cmds){
-      console.log({c})
+      // console.log({c})
       const [cmd, arg] = c.split(" ");
       switch(cmd){
         case Commands.Enqueue:
-          console.log({arg})
+          // console.log({arg})
           this.enqueue(arg);
           break;
         case Commands.Dequeue:
@@ -48,10 +45,5 @@ class CmdProcessor {
     return []
   }
 }
-class Q{
 
-}
-function qusing2stacks(input: string[]): string[] {
-  return ["14", "14"];
-}
-export { qusing2stacks, CmdProcessor, Q };
+export { CmdProcessor,};
