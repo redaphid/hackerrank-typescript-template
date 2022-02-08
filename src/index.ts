@@ -6,19 +6,19 @@ enum Commands {
   Print = "3",
 }
 class CmdProcessor {
-  private top = "14"
   private enqueue: AnyFn;
-  private dequeue: AnyFn
+  private dequeue: AnyFn;
+  private q: string[] = [];
   constructor( 
     private print: AnyFn,
     enqueue?: AnyFn,
     dequeue?:AnyFn,
   ) {
     this.enqueue = enqueue || ((arg: string) => {
-      this.top = arg;
+      this.q.push(arg);
     });
     this.dequeue = dequeue || ((): void => {
-      this.top = "14";
+      this.q.shift();
     });
     this.print = print || ((arg: string) => {
       console.log(arg);
@@ -38,7 +38,7 @@ class CmdProcessor {
           this.dequeue();
           break;
         case Commands.Print:
-          this.print(this.top);
+          this.print(this.q[0]);
         break;
         default:
           throw new Error(`Unknown command ${cmd}`);
