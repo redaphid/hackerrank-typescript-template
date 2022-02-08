@@ -10,8 +10,9 @@ class CmdProcessor {
     this.enqueue("there");
     this.dequeue();
   }
-  process() {
+  process(cmd: string[]): string[] {
     this.enqueue(42);
+    return []
   }
 }
 function qusing2stacks(input: string[]): string[] {

@@ -39,7 +39,7 @@ describe('qusing2stacks', () => {
           input = [
             "10", "1 42",
           ] 
-          result  = cmd.process()
+          result  = cmd.process(input)
         });
         it("should have called the enqueue w/42", () => {
           expect(enqueue).toHaveBeenCalledWith(42)
