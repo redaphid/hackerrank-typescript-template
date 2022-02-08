@@ -17,16 +17,34 @@ describe('qusing2stacks', () => {
     })
     describe("When constructed with enqueue, dequeue, and print fns", () => {
       let cmd
+      let enqueue, dequeue, print
       beforeEach(() => {
+        enqueue = jest.fn()
+        dequeue = jest.fn()
+        print = jest.fn()
+
         cmd = new CmdProcessor(
-          jest.fn(),
-          jest.fn(),
-          jest.fn(),
+          enqueue,
+          dequeue,
+          print        
         )
       });
       it("should exist", () => {
         expect(cmd).toBeDefined()
       })
+      describe('Given the sample set of commands', () => {
+        let input
+        let result
+        beforeEach(() => {
+          input = [
+            "10", "1 42",
+          ] 
+          result  = cmd.process()
+        });
+        it("should have called the enqueue w/42", () => {
+          expect(enqueue).toHaveBeenCalledWith(42)
+        })
+      });
     })
   })
 })
