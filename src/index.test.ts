@@ -1,5 +1,5 @@
-
+import {whatever} from './index';
   test("Let's get things started", ()=>{
-    expect(true).toBe(false)
+    expect(whatever).not.toBeDefined();
   })
 
