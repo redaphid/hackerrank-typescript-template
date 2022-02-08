@@ -43,7 +43,7 @@ describe("qusing2stacks", () => {
           result = cmd.process(input);
         });
         it("should have called the enqueue w/42", () => {
-          expect(enqueue).toHaveBeenCalledWith(42);
+          expect(enqueue).toHaveBeenCalledWith("42");
         });
       });
       describe("Given the example list of commands", () => {
@@ -65,9 +65,9 @@ describe("qusing2stacks", () => {
           cmd.process(input);
         });
         test("Example 1", () => {
-          expect(enqueue).toHaveBeenCalledWith(42);
+          expect(enqueue).toHaveBeenCalledWith("42");
           expect(dequeue).toHaveBeenCalled();
-          expect(print).toHaveBeenCalledWith(14);
+          expect(print).toHaveBeenCalledWith("14");
         })
       })
     });

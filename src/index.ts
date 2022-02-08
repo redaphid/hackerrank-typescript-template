@@ -6,7 +6,7 @@ enum Commands {
   Print = "3",
 }
 class CmdProcessor {
-  private top = 14
+  private top = "14"
   constructor(
     private enqueue: AnyFn,
     private dequeue: AnyFn,
@@ -18,7 +18,7 @@ class CmdProcessor {
       const [cmd, arg] = c.split(" ");
       switch(cmd){
         case Commands.Enqueue:
-          this.enqueue(Number(arg));
+          this.enqueue(arg);
           break;
         case Commands.Dequeue:
           this.dequeue();
