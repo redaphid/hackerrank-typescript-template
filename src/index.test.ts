@@ -26,11 +26,10 @@ describe("qusing2stacks", () => {
       let cmd;
       let enqueue, dequeue, print;
       beforeEach(() => {
+        print = jest.fn();
         enqueue = jest.fn();
         dequeue = jest.fn();
-        print = jest.fn();
-
-        cmd = new CmdProcessor(enqueue, dequeue, print);
+        cmd = new CmdProcessor(print, enqueue, dequeue);
       });
       it("should exist", () => {
         expect(cmd).toBeDefined();
@@ -47,7 +46,7 @@ describe("qusing2stacks", () => {
         });
       });
       describe("Given the example list of commands", () => {
-        let input
+        let input;
         beforeEach(() => {
           input = [
             "10",
@@ -66,10 +65,43 @@ describe("qusing2stacks", () => {
         });
         test("Example 1", () => {
           expect(enqueue).toHaveBeenCalledWith("42");
-          expect(dequeue).toHaveBeenCalled();
           expect(print).toHaveBeenCalledWith("14");
-        })
-      })
+          expect(enqueue).toHaveBeenCalledWith("28");
+          expect(print).toHaveBeenCalledWith("14");
+          expect(enqueue).toHaveBeenCalledWith("60");
+          expect(enqueue).toHaveBeenCalledWith("78");
+          expect(dequeue).toHaveBeenCalledTimes(3);
+          expect(dequeue).toHaveBeenCalled();
+        });
+      });
+    });
+    describe("Using the actual queue", () => {
+      let input;
+      let cmd
+      let print
+      beforeEach(() => {
+        print = jest.fn();
+        cmd = new CmdProcessor(print);
+        input = [
+          "WHATEVER",
+          "1 42",
+          "1 903",
+          "3", //42
+          "2",
+          "3", //903
+          "1 10",
+          "3", //10
+          "1 78",
+          "2",
+          "2",
+        ];
+        cmd.process(input);
+      });
+      test("Different EX", () => {
+        expect(print).toHaveBeenCalledWith("42");
+        expect(print).toHaveBeenCalledWith("903");
+        expect(print).toHaveBeenCalledWith("10");
+      });
     });
   });
   describe("Queue", () => {
