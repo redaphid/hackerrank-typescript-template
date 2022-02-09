@@ -8,7 +8,9 @@ class Executor {
   print(i: number) {
     return this.buf[i]
   }
-  delete(i:number) {}
+  delete(i:number) {
+    this.buf = this.buf.slice(0,-i)
+  }
   undo() {}
   execute(s: string) {
     const [command, ...args] = s.split(" ");

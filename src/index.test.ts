@@ -43,15 +43,19 @@ describe("Executor", () => {
       exe.append("donovan");
       result = exe.print(1);
     });
+    it("should set the buffer to 'donovan'", () => {
+      expect(exe.buf).toEqual("donovan");
+    });
+
     it("should call the correct functions", () => {
       expect(result).toEqual("o");
     });
-    describe("When deleting the last characer", () => {
+    describe("When deleting the last 2 characters", () => {
       beforeEach(() => {
-        exe.undo();
+        exe.delete(2);
       });
       it("should call the correct functions", () => {
-        expect(exe.buf).toEqual("donovan");
+        expect(exe.buf).toEqual("donov");
       });
     })
   });
