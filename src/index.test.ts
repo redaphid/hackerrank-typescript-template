@@ -35,6 +35,19 @@ describe("Executor", () => {
       });
     })
   });
+  describe("executeAll", () => {
+    let exe;
+    beforeEach(() => {
+      exe = new Executor();
+      jest.spyOn(exe, "execute");
+      exe.executeAll(["1 Aaron", "2 10"]);
+
+    });
+    it("should return the correct result", () => {
+      expect(exe.execute).toHaveBeenCalledWith("1 Aaron");
+      expect(exe.execute).toHaveBeenCalledWith("2 10");
+    })
+  })
   describe("When executing a adds a silly string, then prints a char at it's index", () => {
     let exe
     let result;

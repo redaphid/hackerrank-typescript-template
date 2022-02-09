@@ -17,6 +17,11 @@ class Executor {
   undo() {
     this.buf = `${this.revert}`
   }
+  executeAll(commands: string[]) {
+    commands.forEach(command => {
+      this.execute(command)
+    })
+  }
   execute(s: string) {
     const [command, ...args] = s.split(" ");
     switch (command) {
