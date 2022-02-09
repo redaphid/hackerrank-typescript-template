@@ -57,6 +57,14 @@ describe("Executor", () => {
       it("should call the correct functions", () => {
         expect(exe.buf).toEqual("donov");
       });
+      describe("when undoing the delete", () => {
+        beforeEach(() => {
+          exe.undo();
+        });
+        it("should set the buffer back to donovan", () => {
+          expect(exe.buf).toEqual("donovan");
+        });
+      })
     })
   });
 });

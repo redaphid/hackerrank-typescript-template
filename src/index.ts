@@ -2,16 +2,21 @@ function editor() {}
 
 class Executor {
   buf: string = '';
+  revert: string = '';
   append(s: string) {
+    this.revert = `${this.buf}`;
     this.buf+=s
   }
   print(i: number) {
     return this.buf[i]
   }
   delete(i:number) {
+    this.revert = `${this.buf}`;
     this.buf = this.buf.slice(0,-i)
   }
-  undo() {}
+  undo() {
+    this.buf = `${this.revert}`
+  }
   execute(s: string) {
     const [command, ...args] = s.split(" ");
     switch (command) {
