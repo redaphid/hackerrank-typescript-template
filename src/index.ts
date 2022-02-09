@@ -1,10 +1,11 @@
 import _ from "lodash";
-const openersToClosers = {
-  "{": "}",
-  "[": "]",
+const closersToOpeners = {
+  "}": "{",
+  "]": "[",
+  ")":"(",
 };
-const openers = _.keys(openersToClosers);
-const closers = _.values(openersToClosers);
+const openers = _.values(closersToOpeners);
+const closers = _.keys(closersToOpeners);
 function balanced(s: string): boolean {
   if (s.length % 2 !== 0) return false;
   
@@ -15,15 +16,20 @@ function balanced(s: string): boolean {
     const c = iStack.shift();
     if (!c) return true;
     console.log({c})
+    
     if (openers.includes(c)) {
-      oStack.push(c);
-      console.log("added opener", c)
+      oStack.push(c)
       continue;
     }
+
     if (oStack.length === 0) return false;
+
+    const close = closersToOpeners[c]
+    if(!close) return false
+
     console.log(c);
   }
-  return true;
+  return false;
 }
 
 export { balanced };
