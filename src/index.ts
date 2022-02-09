@@ -24,17 +24,17 @@ function balanced(s: string): boolean {
       continue;
     }
 
-    if (oStack.length === 0) return false;
-
     const last = oStack.pop()
-
+    if(!last) return false
     const o = closersToOpeners[c]
 
-    if(!last) return false
-    console.log({last,o,c, eq: o == '{'})
+ 
+    console.log({last,o,c})
     if(o !== last) return false
   }
-  return true;
+  console.log("tail case")
+  console.log({oStack, iStack})
+  return oStack.length === 0;
 }
 
 export { balanced };
