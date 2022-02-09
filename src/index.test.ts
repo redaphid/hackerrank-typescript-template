@@ -20,9 +20,9 @@ describe("Executor", () => {
       beforeEach(() => {
         result = parser.execute("1 Aaron");
       });
-    });
-    it("should call the correct functions", () => {
-      expect(parser.append).toHaveBeenCalledWith("Aaron");     
+      it("should call the correct functions", () => {
+        expect(parser.append).toHaveBeenCalledWith("Aaron");     
+      });
     });
   });
 });
