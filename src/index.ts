@@ -1,5 +1,4 @@
-function editor() {}
-
+import _ from 'lodash'
 class Executor {
   buf: string = '';
   revert: string = '';
@@ -17,10 +16,11 @@ class Executor {
   undo() {
     this.buf = `${this.revert}`
   }
-  executeAll(commands: string[]) {
-    commands.forEach(command => {
-      this.execute(command)
+  executeAll(commands: string[]):string[]{
+    const responses = commands.map(command => {
+      return this.execute(command)
     })
+    return _.compact(responses)
   }
   execute(s: string) {
     const [command, ...args] = s.split(" ");
@@ -32,8 +32,7 @@ class Executor {
         this.delete(parseInt(args[0]));
         return
       case "3":
-        this.print(parseInt(args[0]));
-        return
+        return this.print(parseInt(args[0]));
       case "4":
         this.undo();
         return
@@ -42,4 +41,4 @@ class Executor {
     }
   }
 }
-export { editor, Executor };
+export {Executor };

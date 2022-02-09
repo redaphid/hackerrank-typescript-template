@@ -1,7 +1,4 @@
-import { editor, Executor } from "./index";
-test("Let's get things started", () => {
-  expect(editor).toBeDefined();
-});
+import {Executor } from "./index";
 describe("Executor", () => {
   it("should exist", () => {
     expect(Executor).toBeDefined();
@@ -37,15 +34,21 @@ describe("Executor", () => {
   });
   describe("executeAll", () => {
     let exe;
+    let result
     beforeEach(() => {
       exe = new Executor();
       jest.spyOn(exe, "execute");
-      exe.executeAll(["1 Aaron", "2 10"]);
+      jest.spyOn(exe, "print").mockReturnValue("hi world");
+      result = exe.executeAll(["1 Aaron", "3 1"]);
 
     });
     it("should return the correct result", () => {
       expect(exe.execute).toHaveBeenCalledWith("1 Aaron");
-      expect(exe.execute).toHaveBeenCalledWith("2 10");
+      expect(exe.execute).toHaveBeenCalledWith("3 1");
+      expect(exe.print).toHaveBeenCalledWith(1);
+    })
+    it("should return the things to print", () => {
+      expect(result).toEqual(["hi world"]);
     })
   })
   describe("When executing a adds a silly string, then prints a char at it's index", () => {
