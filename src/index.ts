@@ -15,7 +15,9 @@ function balanced(s: string): boolean {
   while (iStack.length > 0) {
     const c = iStack.shift();
     if (!c) return true;
-    console.log({c})
+
+    //Check if the character is even valid
+    if(!openers.includes(c) && !closers.includes(c)) return false
     
     if (openers.includes(c)) {
       oStack.push(c)
@@ -24,12 +26,15 @@ function balanced(s: string): boolean {
 
     if (oStack.length === 0) return false;
 
-    const close = closersToOpeners[c]
-    if(!close) return false
+    const last = oStack.pop()
 
-    console.log(c);
+    const o = closersToOpeners[c]
+
+    if(!last) return false
+    console.log({last,o,c, eq: o == '{'})
+    if(o !== last) return false
   }
-  return false;
+  return true;
 }
 
 export { balanced };
